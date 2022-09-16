@@ -1,1 +1,2 @@
+Nome: Eduardo, Matrícula: 4400
 Meu projeto terá foco em ser uma calculadora para matemática financeira a fim de automatizar calculos do regime de capitalização simples ou composto. Mais pra frente ela pode conter calculos da inflação e a sua influência por exemplo pra quem comprou um carro e vendeu posteriormente, os calculos avaliam o real lucro ou não da venda a partir da influência da inflação.
