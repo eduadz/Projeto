@@ -6,7 +6,7 @@ int main(){
     float m, r, i, n;
 
     printf("Calculadora de depósitos periódicos em um investimento ");
-    float lucro[c+1];
+    float lucro[100];
     
     for(c=0;;c++){
     
