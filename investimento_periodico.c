@@ -2,43 +2,51 @@
 #include <math.h>
 
 int main(){
-    int c=0, decisao, num=0;
-    float m, r, i, n;
+    int cont=0, decisao;
+    float m, r, i, n , M_invest[100][5]; //colunas: dep mensal, taxa, numero de dep, montante e lucro
+    float valoraplicado=0;
 
-    printf("Calculadora de depósitos periódicos em um investimento ");
-    float lucro[100];
+    printf("Calculadora de investimentos em depósito periódicos");
     
-    for(c=0;;c++){
     
-        printf("\n1 - Calcular montante final após investimentos"
-        "\n2 - Calcular quanto deve ser investido a fim de alcancar o montante desejado"
-        "\nOutro número - Sair"
-        "\nDigite o numero desejado: ");
-        scanf("%d", &decisao);
+    printf("\n1 - Calcular montante final após investimentos"
+    "\n2 - Calcular quanto deve ser investido a fim de alcancar o montante desejado"
+    "\nOutro número - Sair"
+    "\nDigite o numero desejado: ");
+    scanf("%d", &decisao);
 
-        if(decisao == 1){
+    char continuar;
+    if(decisao == 1){
+        continuar = 's';
 
-            printf("Investimento %d\n", c+1);
+        while(continuar == 's'){
+            printf("\nInvestimento %d\n", cont+1);
             printf("Digite o valor para deposito mensal: ");
-            scanf("%f", &r);
+            scanf("%f", &M_invest[cont][0]);
             printf("Digite a taxa mensal de juros: ");
-            scanf("%f", &i);
+            scanf("%f", &M_invest[cont][1]);
             printf("Digite o numero de  depositos mensais: ");
-            scanf("%f", &n);
-            
-            m = r*((pow(1+(i/100),n)-1)/(i/100));
+            scanf("%f", &M_invest[cont][2]);
+                
+            m = M_invest[cont][0]*((pow(1+(M_invest[cont][1]/100),M_invest[cont][2])-1)/(M_invest[cont][1]/100));
+            valoraplicado = M_invest[cont][0]*M_invest[cont][2];
 
-            printf("\nValor aplicado: R$%.2f", r*n);
-            printf("\nMontante final após aplicacoes: R$%.2f",m);
-            printf("\nLucro: R$%.2f", m-(r*n));
-            
-            //adicionar lucros ao vetor lucro
-            lucro[c] = m-(r*n);
-            num++; //numero de lucros no vetor
-            
+            M_invest[cont][3] = m;
+            M_invest[cont][4] = m - valoraplicado;
 
-        }else if(decisao ==2){
+            printf("\nValor aplicado: R$%.2f", valoraplicado);
+            printf("\nMontante final após aplicacoes: R$%.2f", m);
+            printf("\nLucro: R$%.2f", M_invest[cont][4]);
 
+            printf("\nDigite se deseja continuar (s/n): ");
+            scanf("%s", &continuar);
+            cont++;
+
+        }
+
+    }else if(decisao ==2){
+        continuar = 's';
+        while(continuar == 's'){
             printf("Digite o montante desejado: ");
             scanf("%f", &m);
             printf("Digite a taxa mensal de juros: ");
@@ -48,36 +56,32 @@ int main(){
 
             r = (m*(i/100))/(pow(1+(i/100),n)-1);
 
-            printf("Valor a ser aplicado: R$%.2f", r);
-            
-        }else {
-            break;
+            printf("Valor a ser aplicado periodicamente: R$%.2f", r);
+
+            printf("\nDigite se deseja continuar (s/n): ");
+            scanf("%s", &continuar);
         }
         
-        printf("\n");
+    }else{
+        printf("Saída realizada.\n");
     }
+
+    printf("\n");
     
-    char resposta;
-    printf("Ver lucros em ordem crescente de investimento (s/n): ");
-    scanf("%s", &resposta);
-    
-    if(resposta == 's'){
-        //colocar lucros em ordem crescente
-        float armazenador;
-        for(int j=0;j<num;j++){
-            for(c=j+1;c<num;c++){
-                if(lucro[j] > lucro[c]){
-                    armazenador= lucro[j];
-                    lucro[c] = lucro[j];
-                    lucro[j] = armazenador;
-                }
+    //imprimindo o investimento com maior lucro 
+    if(cont > 1){
+        int maior_indice;
+        float maior_lucro;
+        M_invest[0][4] = maior_lucro;
+        maior_indice = 0;
+
+        for(int l=0;l<cont;l++){
+            if(M_invest[l][4] > maior_lucro){
+                maior_lucro = M_invest[l][4];
+                maior_indice = l;
             }
         }
-        //mostrar lucros
-        printf("Lucros: ");
-        for(c=0;c<num;c++){
-            printf("%.2f ", lucro[c]);
-        }
+        printf("Maior lucro: %.2f, no investimento %d.", maior_lucro, maior_indice+1);
     }
     
     printf("\n");
