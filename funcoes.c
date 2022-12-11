@@ -218,11 +218,11 @@ float invest_period(){
         else if(decisao == 1){
 
             printf("\nInvestimento %d\n", cont+1);
-            printf("Digite o valor para deposito mensal: ");
+            printf("Digite o valor para deposito: ");
             scanf("%f", &r);
-            printf("Digite a taxa mensal de juros: ");
+            printf("Digite a taxa de juros: ");
             scanf("%f", &i);
-            printf("Digite o numero de  depositos mensais: ");
+            printf("Digite o numero de  depositos: ");
             scanf("%f", &n);
                 
             m = r*((pow(1+(i/100),n)-1)/(i/100));
@@ -239,9 +239,9 @@ float invest_period(){
 
             printf("Digite o montante desejado: ");
             scanf("%f", &m);
-            printf("Digite a taxa mensal de juros: ");
+            printf("Digite a taxa de juros: ");
             scanf("%f", &i);
-            printf("Digite o numero de depositos mensais: ");
+            printf("Digite o numero de depositos : ");
             scanf("%f", &n);
 
             r = (m*(i/100))/(pow(1+(i/100),n)-1);
