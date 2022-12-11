@@ -247,7 +247,7 @@ float invest_period(){
             r = (m*(i/100))/(pow(1+(i/100),n)-1);
 
             printf("\nValor a ser aplicado periodicamente: R$%.2f", r);
-            fprintf(arquivo, "%d;%.2f\n", cont+1, r);
+            fprintf(arquivo, "%.2f\n", r);
             printf("\n");
             
         }else{
